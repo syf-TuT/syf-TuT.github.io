@@ -210,6 +210,13 @@
             position: relative;
         }
 
+        .about-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
         .about-avatar::before {
             content: '';
             position: absolute;
@@ -605,8 +612,8 @@
         <div class="container">
             <div class="hero-content fade-in">
                 <h1>你好，我是<span id="name">idle</span></h1>
-                <p class="subtitle">一名热爱技术的学生</p>
-                <p class="typing-text">探索 · 学习 · 成长</p>
+                <p class="subtitle">后端开发 | AI Agent 开发者</p>
+                <p class="typing-text">Java · Python · Agent · RAG</p>
                 <div class="hero-btns">
                     <a href="#about" class="btn btn-primary">了解更多</a>
                     <a href="#contact" class="btn btn-outline">联系我</a>
@@ -621,18 +628,19 @@
             <h2 class="section-title fade-in">关于我</h2>
             <div class="about-content">
                 <div class="about-avatar fade-in delay-1">
-                    <i class="fas fa-user"></i>
+                    <img src="avatar.jpg" alt="头像">
                 </div>
                 <div class="glass-card fade-in delay-2">
                     <div class="about-info">
                         <h3>我是谁？</h3>
-                        <p>我是一名热爱编程的学生，对前端开发充满热情。喜欢折腾各种有趣的技术，正在不断学习和成长中。</p>
-                        <p>对新技术充满好奇，喜欢通过项目实践来提升自己的技能。</p>
+                        <p>我是一名后端开发工程师，专注于 Java 与 Python 技术栈。热衷于 AI Agent 与 RAG 技术的探索与实践。</p>
+                        <p>对大模型应用开发充满兴趣，喜欢通过项目实践来提升自己的技能。</p>
                         <div class="tags">
-                            <span class="tag">前端开发</span>
-                            <span class="tag">UI/UX</span>
-                            <span class="tag">摄影</span>
+                            <span class="tag">后端开发</span>
+                            <span class="tag">AI Agent</span>
                             <span class="tag">音乐</span>
+                            <span class="tag">美食</span>
+                            <span class="tag">编程</span>
                         </div>
                     </div>
                 </div>
@@ -648,7 +656,7 @@
                 <div class="glass-card fade-in delay-1">
                     <div class="skill-item">
                         <div class="skill-name">
-                            <span>HTML/CSS</span>
+                            <span>Java</span>
                             <span>90%</span>
                         </div>
                         <div class="skill-bar">
@@ -657,7 +665,7 @@
                     </div>
                     <div class="skill-item">
                         <div class="skill-name">
-                            <span>JavaScript</span>
+                            <span>Python</span>
                             <span>85%</span>
                         </div>
                         <div class="skill-bar">
@@ -666,18 +674,27 @@
                     </div>
                     <div class="skill-item">
                         <div class="skill-name">
-                            <span>Vue.js</span>
-                            <span>80%</span>
+                            <span>Spring Boot</span>
+                            <span>85%</span>
                         </div>
                         <div class="skill-bar">
-                            <div class="skill-progress" data-width="80"></div>
+                            <div class="skill-progress" data-width="85"></div>
                         </div>
                     </div>
                 </div>
                 <div class="glass-card fade-in delay-2">
                     <div class="skill-item">
                         <div class="skill-name">
-                            <span>React</span>
+                            <span>AI Agent</span>
+                            <span>80%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="80"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>RAG</span>
                             <span>75%</span>
                         </div>
                         <div class="skill-bar">
@@ -686,20 +703,11 @@
                     </div>
                     <div class="skill-item">
                         <div class="skill-name">
-                            <span>Node.js</span>
-                            <span>70%</span>
+                            <span>MySQL/Redis</span>
+                            <span>80%</span>
                         </div>
                         <div class="skill-bar">
-                            <div class="skill-progress" data-width="70"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Git</span>
-                            <span>85%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="85"></div>
+                            <div class="skill-progress" data-width="80"></div>
                         </div>
                     </div>
                 </div>
@@ -761,19 +769,19 @@
             <h2 class="section-title fade-in">博客文章</h2>
             <div class="blog-grid">
                 <div class="glass-card blog-card fade-in delay-1">
-                    <h3>如何学习前端开发</h3>
+                    <h3>基于 RAG 的智能问答系统实践</h3>
                     <p class="date">2026-02-15</p>
-                    <p>分享一些学习前端的心得体会，以及推荐的学习资源和路线。</p>
+                    <p>分享如何从零构建 RAG 系统，包括向量检索、文本分块等核心技术的实践心得。</p>
                 </div>
                 <div class="glass-card blog-card fade-in delay-2">
-                    <h3>CSS 动画实战技巧</h3>
+                    <h3>AI Agent 开发实战指南</h3>
                     <p class="date">2026-01-28</p>
-                    <p>探讨 CSS 动画的精髓，通过实例讲解如何创建流畅炫酷的动画效果。</p>
+                    <p>探讨 AI Agent 的架构设计思路，如何实现多轮对话和工具调用能力。</p>
                 </div>
                 <div class="glass-card blog-card fade-in delay-3">
-                    <h3>我的 2025 技术总结</h3>
+                    <h3>Java 性能优化实战</h3>
                     <p class="date">2026-01-01</p>
-                    <p>回顾过去一年的学习历程，总结收获和成长，展望新的一年。</p>
+                    <p>分享 Java 后端开发中的性能优化经验，包括 JVM 调优、数据库查询优化等。</p>
                 </div>
             </div>
         </div>
@@ -790,13 +798,13 @@
                 <a href="https://github.com/syf-TuT" class="contact-link" title="GitHub" target="_blank">
                     <i class="fab fa-github"></i>
                 </a>
-                <a href="mailto:your@email.com" class="contact-link" title="邮箱">
+                <a href="#" class="contact-link" title="邮箱" id="email-link">
                     <i class="fas fa-envelope"></i>
                 </a>
-                <a href="#" class="contact-link" title="CSDN" target="_blank">
+                <a href="https://blog.csdn.net/2301_80411303?type=blog" class="contact-link" title="CSDN" target="_blank">
                     <i class="fas fa-blog"></i>
                 </a>
-                <a href="#" class="contact-link" title="知乎" target="_blank">
+                <a href="https://www.zhihu.com/people/idle-24-76" class="contact-link" title="知乎" target="_blank">
                     <i class="fab fa-zhihu"></i>
                 </a>
             </div>
@@ -987,6 +995,15 @@
                     current = section.getAttribute('id');
                 }
             });
+
+            // 动态生成邮箱链接，防止爬虫抓取
+            var user = 'yufans226';
+            var domain = 'gmail.com';
+            var email = user + '@' + domain;
+            var emailLink = document.getElementById('email-link');
+            if (emailLink) {
+                emailLink.href = 'mailto:' + email;
+            }
 
             navItems.forEach(item => {
                 item.classList.remove('active');
