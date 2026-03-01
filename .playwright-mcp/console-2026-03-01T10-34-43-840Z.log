@@ -1,0 +1,14 @@
+[     399ms] Uncaught TypeError: Cannot read properties of null (reading '0')
+    at setfirstPageInfo (https://g.csdnimg.cn/common/csdn-report/report.js:16:12474)
+    at initData (https://g.csdnimg.cn/common/csdn-report/report.js:16:15442)
+    at <anonymous> (https://g.csdnimg.cn/common/csdn-report/report.js:16:28778)
+    at <anonymous> (https://g.csdnimg.cn/common/csdn-report/report.js:16:29501)
+[    2098ms] [WARNING] document.domain mutation is ignored because the surrounding agent cluster is origin-keyed. @ https://g.csdnimg.cn/??lib/jquery/1.12.4/jquery.min.js,user-tooltip/2.7/user-tooltip.js,lib/qrcode/1.0.0/qrcode.min.js:5
+[    2098ms] [WARNING] document.domain mutation is ignored because the surrounding agent cluster is origin-keyed. @ https://g.csdnimg.cn/extension-box/1.1.6/extension-box.js:0
+[    2779ms] Uncaught ReferenceError: _ref1 is not defined
+    at success (https://g.csdnimg.cn/common/csdn-toolbar/csdn-toolbar.js:2:582)
+    at i (https://g.csdnimg.cn/??lib/jquery/1.12.4/jquery.min.js,user-tooltip/2.7/user-tooltip.js,lib/qrcode/1.0.0/qrcode.min.js:1:27448)
+    at fireWith (https://g.csdnimg.cn/??lib/jquery/1.12.4/jquery.min.js,user-tooltip/2.7/user-tooltip.js,lib/qrcode/1.0.0/qrcode.min.js:1:28212)
+    at y (https://g.csdnimg.cn/??lib/jquery/1.12.4/jquery.min.js,user-tooltip/2.7/user-tooltip.js,lib/qrcode/1.0.0/qrcode.min.js:3:22720)
+    at c (https://g.csdnimg.cn/??lib/jquery/1.12.4/jquery.min.js,user-tooltip/2.7/user-tooltip.js,lib/qrcode/1.0.0/qrcode.min.js:3:26924)
+    at t.onreadystatechange (https://blog.csdn.net/cdn_cgi_bs_captcha/static/js/waf_captcha_embedded_bs.js:0:109521)
