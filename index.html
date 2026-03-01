@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的个人主页</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-dark: #0a0a0f;
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --accent-cyan: #00d9ff;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-white: #ffffff;
+            --text-gray: #a0a0a0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'PingFang SC', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* 粒子背景 */
+        #particles-js {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        /* 通用容器 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 入场动画 */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Hero 区 */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: var(--text-gray);
+            margin-bottom: 2rem;
+        }
+
+        .hero .typing-text {
+            font-size: 1.2rem;
+            color: var(--accent-cyan);
+            margin-bottom: 2rem;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--accent-cyan);
+            color: var(--accent-cyan);
+        }
+
+        .btn-outline:hover {
+            background: var(--accent-cyan);
+            color: var(--bg-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 217, 255, 0.3);
+        }
+
+        /* 章节通用 */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--primary-gradient);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+
+        /* 玻璃卡片 */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 217, 255, 0.15);
+            border-color: var(--accent-cyan);
+        }
+
+        /* 关于我 */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-avatar {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: var(--primary-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .about-avatar::before {
+            content: '';
+            position: absolute;
+            inset: -5px;
+            border-radius: 50%;
+            background: var(--primary-gradient);
+            z-index: -1;
+            opacity: 0.5;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.3; }
+        }
+
+        .about-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-cyan);
+        }
+
+        .about-info p {
+            color: var(--text-gray);
+            margin-bottom: 1rem;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            padding: 6px 15px;
+            background: rgba(102, 126, 234, 0.2);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--accent-cyan);
+            border: 1px solid rgba(0, 217, 255, 0.3);
+        }
+
+        /* 技能 */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-item {
+            margin-bottom: 20px;
+        }
+
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .skill-bar {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: var(--primary-gradient);
+            border-radius: 4px;
+            width: 0;
+            transition: width 1.5s ease;
+        }
+
+        /* 项目卡片 */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--text-white);
+        }
+
+        .project-card p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .tech-tag {
+            padding: 4px 10px;
+            background: rgba(0, 217, 255, 0.1);
+            border-radius: 12px;
+            font-size: 0.8rem;
+            color: var(--accent-cyan);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .project-links a {
+            color: var(--text-gray);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .project-links a:hover {
+            color: var(--accent-cyan);
+            transform: scale(1.2);
+        }
+
+        /* 博客 */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .blog-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--text-white);
+        }
+
+        .blog-card .date {
+            color: var(--accent-cyan);
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+        }
+
+        .blog-card p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+
+        /* 联系 */
+        .contact {
+            text-align: center;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .contact-link {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--text-white);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .contact-link:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+            box-shadow: 0 10px 30px rgba(0, 217, 255, 0.2);
+        }
+
+        /* 页脚 */
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            color: var(--text-gray);
+            border-top: 1px solid var(--glass-border);
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* 滚动条 */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-gradient);
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 粒子背景 -->
+    <div id="particles-js"></div>
+
+    <!-- Hero 区 -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content fade-in">
+                <h1>你好，我是<span id="name">idle</span></h1>
+                <p class="subtitle">一名热爱技术的学生</p>
+                <p class="typing-text">探索 · 学习 · 成长</p>
+                <div class="hero-btns">
+                    <a href="#about" class="btn btn-primary">了解更多</a>
+                    <a href="#contact" class="btn btn-outline">联系我</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 关于我 -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title fade-in">关于我</h2>
+            <div class="about-content">
+                <div class="about-avatar fade-in delay-1">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="glass-card fade-in delay-2">
+                    <div class="about-info">
+                        <h3>我是谁？</h3>
+                        <p>我是一名热爱编程的学生，对前端开发充满热情。喜欢折腾各种有趣的技术，正在不断学习和成长中。</p>
+                        <p>对新技术充满好奇，喜欢通过项目实践来提升自己的技能。</p>
+                        <div class="tags">
+                            <span class="tag">前端开发</span>
+                            <span class="tag">UI/UX</span>
+                            <span class="tag">摄影</span>
+                            <span class="tag">音乐</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 技能 -->
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title fade-in">技能栈</h2>
+            <div class="skills-grid">
+                <div class="glass-card fade-in delay-1">
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>HTML/CSS</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="90"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>JavaScript</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="85"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Vue.js</span>
+                            <span>80%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="80"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-card fade-in delay-2">
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>React</span>
+                            <span>75%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="75"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Node.js</span>
+                            <span>70%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="70"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Git</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="85"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 项目作品 -->
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title fade-in">项目作品</h2>
+            <div class="projects-grid">
+                <div class="glass-card project-card fade-in delay-1">
+                    <h3>项目名称 1</h3>
+                    <p>这是一个很酷的项目，使用了现代前端技术栈，实现了流畅的用户体验和炫酷的视觉效果。</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Vue</span>
+                        <span class="tech-tag">TypeScript</span>
+                        <span class="tech-tag">Vite</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" title="查看代码"><i class="fab fa-github"></i></a>
+                        <a href="#" title="在线预览"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+                <div class="glass-card project-card fade-in delay-2">
+                    <h3>项目名称 2</h3>
+                    <p>一个实用的工具类项目，帮助开发者提高效率，界面简洁美观，功能强大。</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">MongoDB</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" title="查看代码"><i class="fab fa-github"></i></a>
+                        <a href="#" title="在线预览"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+                <div class="glass-card project-card fade-in delay-3">
+                    <h3>项目名称 3</h3>
+                    <p>个人学习过程中创建的小项目，记录了学习笔记和代码实践，供参考交流。</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">HTML</span>
+                        <span class="tech-tag">CSS</span>
+                        <span class="tech-tag">JavaScript</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" title="查看代码"><i class="fab fa-github"></i></a>
+                        <a href="#" title="在线预览"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 博客 -->
+    <section id="blog">
+        <div class="container">
+            <h2 class="section-title fade-in">博客文章</h2>
+            <div class="blog-grid">
+                <div class="glass-card blog-card fade-in delay-1">
+                    <h3>如何学习前端开发</h3>
+                    <p class="date">2026-02-15</p>
+                    <p>分享一些学习前端的心得体会，以及推荐的学习资源和路线。</p>
+                </div>
+                <div class="glass-card blog-card fade-in delay-2">
+                    <h3>CSS 动画实战技巧</h3>
+                    <p class="date">2026-01-28</p>
+                    <p>探讨 CSS 动画的精髓，通过实例讲解如何创建流畅炫酷的动画效果。</p>
+                </div>
+                <div class="glass-card blog-card fade-in delay-3">
+                    <h3>我的 2025 技术总结</h3>
+                    <p class="date">2026-01-01</p>
+                    <p>回顾过去一年的学习历程，总结收获和成长，展望新的一年。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系 -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title fade-in">联系我</h2>
+            <p class="fade-in delay-1" style="color: var(--text-gray); margin-bottom: 2rem;">
+                欢迎通过以下方式与我交流！
+            </p>
+            <div class="contact-links fade-in delay-2">
+                <a href="https://github.com/syf-TuT" class="contact-link" title="GitHub" target="_blank">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="mailto:your@email.com" class="contact-link" title="邮箱">
+                    <i class="fas fa-envelope"></i>
+                </a>
+                <a href="#" class="contact-link" title="CSDN" target="_blank">
+                    <i class="fas fa-blog"></i>
+                </a>
+                <a href="#" class="contact-link" title="知乎" target="_blank">
+                    <i class="fab fa-zhihu"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 syf-TuT. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Particles.js -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script>
+        // 粒子背景配置
+        particlesJS('particles-js', {
+            particles: {
+                number: {
+                    value: 80,
+                    density: {
+                        enable: true,
+                        value_area: 800
+                    }
+                },
+                color: {
+                    value: '#00d9ff'
+                },
+                shape: {
+                    type: 'circle',
+                    stroke: {
+                        width: 0,
+                        color: '#000000'
+                    }
+                },
+                opacity: {
+                    value: 0.5,
+                    random: true,
+                    anim: {
+                        enable: true,
+                        speed: 1,
+                        opacity_min: 0.1
+                    }
+                },
+                size: {
+                    value: 3,
+                    random: true,
+                    anim: {
+                        enable: true,
+                        speed: 2,
+                        size_min: 1
+                    }
+                },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: '#667eea',
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: 'none',
+                    random: true,
+                    out_mode: 'out',
+                    attract: {
+                        enable: true,
+                        rotateX: 600,
+                        rotateY: 600
+                    }
+                }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: {
+                    onhover: {
+                        enable: true,
+                        mode: 'grab'
+                    },
+                    onclick: {
+                        enable: true,
+                        mode: 'push'
+                    },
+                    resize: true
+                },
+                modes: {
+                    grab: {
+                        distance: 140,
+                        line_linked: {
+                            opacity: 1
+                        }
+                    },
+                    push: {
+                        particles_nb: 4
+                    }
+                }
+            },
+            retina_detect: true
+        });
+
+        // 技能进度条动画
+        const skillBars = document.querySelectorAll('.skill-progress');
+        const observerOptions = {
+            threshold: 0.5
+        };
+
+        const skillObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const width = entry.target.getAttribute('data-width');
+                    entry.target.style.width = width + '%';
+                }
+            });
+        }, observerOptions);
+
+        skillBars.forEach(bar => skillObserver.observe(bar));
+
+        // 滚动显示动画
+        const fadeElements = document.querySelectorAll('.fade-in');
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        fadeElements.forEach(el => {
+            el.style.animationPlayState = 'paused';
+            fadeObserver.observe(el);
+        });
+
+        // 打字机效果
+        const typingText = document.querySelector('.typing-text');
+        const text = typingText.textContent;
+        typingText.textContent = '';
+        let i = 0;
+
+        function type() {
+            if (i < text.length) {
+                typingText.textContent += text.charAt(i);
+                i++;
+                setTimeout(type, 100);
+            }
+        }
+
+        setTimeout(type, 1000);
+    </script>
+</body>
+</html>
